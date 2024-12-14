@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+    <script>
+        var broker = {
+            hostname: "055fbe9f21164ecebe0916548dc7dae1.s1.eu.hivemq.cloud",
+            port: 8884,
+            clientId: "pip12345",
+            userName: "pip12345",
+            password: "password"
+        };
+
+        var topic = "pipTopic";
+
+        // MQTT client instance
+        var client = new Paho.MQTT.Client(broker.hostname, Number(broker.port), broker.clientId, {userName: broker.userName, password: broker.password});
+
+        client.onConnectionLost = function (responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("Connection lost: " + responseObject.errorMessage);
+            }
+        };
+
+        client.onMessageArrived = function (message) {
+            console.log("Received message: " + message.payloadString);
+            const data = JSON.parse(message.payloadString);
+            if (data.button && data.state) {
+                const buttonId = 'luce_' + data.button;
+                const button = document.querySelector(`.umbrella-button:nth-child(${data.button})`);
+                if (button) {
+                    if (data.state === "acceso") {
+                        button.classList.add('active');
+                        localStorage.setItem(buttonId, 'active');
+                    } else if (data.state === "spento") {
+                        button.classList.remove('active');
+                        localStorage.removeItem(buttonId);
+                    }
+                }
+            }
+        };
+
+        function onConnect() {
+            console.log("Connected to MQTT broker");
+            client.subscribe(topic);
+            console.log("Subscribed to topic: " + topic);
+        }
+
+        function onFailure(message) {
+            console.log("Connection to MQTT broker failed: " + message.errorMessage);
+        }
+
+        function connect() {
+            client.connect({
+                onSuccess: onConnect,
+                onFailure: onFailure,
+                userName: broker.userName,
+                password: broker.password,
+                useSSL: true
+            });
+        }
+
+        function sendMessage(buttonId, state) {
+            const message = new Paho.MQTT.Message(JSON.stringify({ button: buttonId, state: state }));
+            message.destinationName = topic;
+            client.send(message);
+        }
+
+        window.onload = function() {
+            connect();
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.umbrella-button');
+            buttons.forEach(button => {
+                const buttonId = 'luce_' + button.textContent;
+                if (localStorage.getItem(buttonId) === 'active') {
+                    button.classList.add('active');
+                }
+                button.addEventListener('click', function() {
+                    const isActive = button.classList.contains('active');
+                    const newState = isActive ? "spento" : "acceso";
+                    toggleColor(button);
+                    sendMessage(button.textContent, newState);
+                });
+            });
+        });
+
+        function toggleColor(button) {
+            button.classList.toggle('active');
+            const buttonId = 'luce_' + button.textContent;
+            if (button.classList.contains('active')) {
+                localStorage.setItem(buttonId, 'active');
+            } else {
+                localStorage.removeItem(buttonId);
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controllo Luci</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="message"></div>
+    <div class="container">
+        <h1>LUCI</h1>
+        <div class="umbrella-grid">
+            <button class="umbrella-button">1</button>
+            <button class="umbrella-button">2</button>
+            <button class="umbrella-button">3</button>
+            <button class="umbrella-button">4</button>
+            <button class="umbrella-button">5</button>
+            <button class="umbrella-button">6</button>
+            <button class="umbrella-button">7</button>
+            <button class="umbrella-button">8</button>
+            <button class="umbrella-button">9</button>
+            <button class="umbrella-button">10</button>
+            <button class="umbrella-button">11</button>
+            <button class="umbrella-button">12</button>
+            <button class="umbrella-button">13</button>
+            <button class="umbrella-button">14</button>
+            <button class="umbrella-button">15</button>
+            <button class="umbrella-button">16</button>
+            <button class="umbrella-button">17</button>
+            <button class="umbrella-button">18</button>
+            <button class="umbrella-button">19</button>
+            <button class="umbrella-button">20</button>
+            <button class="umbrella-button">21</button>
+            <button class="umbrella-button">22</button>
+            <button class="umbrella-button">23</button>
+            <button class="umbrella-button">24</button>
+            <button class="umbrella-button">25</button>
+        </div>
+        <button class="back-button" onclick="window.location.href='index.html'">TORNA INDIETRO</button>
+    </div>
+</body>
+</html>

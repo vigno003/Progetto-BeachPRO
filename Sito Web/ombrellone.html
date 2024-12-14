@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controllo Ombrellone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>OMBRELLONI</h1>
+        <div class="umbrella-grid">
+            <button class="umbrella-button" onclick="toggleColor(this)">1</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">2</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">3</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">4</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">5</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">6</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">7</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">8</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">9</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">10</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">11</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">12</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">13</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">14</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">15</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">16</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">17</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">18</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">19</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">20</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">21</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">22</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">23</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">24</button>
+            <button class="umbrella-button" onclick="toggleColor(this)">25</button>
+        </div>
+        <button class="back-button" onclick="window.location.href='index.html'">TORNA INDIETRO</button>
+    </div>
+
+    <script>
+        // Quando la pagina si carica, ripristina lo stato dei bottoni
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.umbrella-button');
+            buttons.forEach(button => {
+                const buttonId = 'ombrellone_' + button.textContent;
+                if (localStorage.getItem(buttonId) === 'active') {
+                    button.classList.add('active');
+                }
+            });
+        });
+
+        function toggleColor(button) {
+            button.classList.toggle('active');
+            const buttonId = 'ombrellone_' + button.textContent;
+            // Salva lo stato nel localStorage
+            if (button.classList.contains('active')) {
+                localStorage.setItem(buttonId, 'active');
+            } else {
+                localStorage.removeItem(buttonId);
+            }
+        }
+    </script>
+</body>
+</html> 

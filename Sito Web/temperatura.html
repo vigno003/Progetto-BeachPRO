@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controllo Temperatura</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .temp-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .temp-buttons {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .temp-button {
+            width: 25px;
+            height: 25px;
+            font-size: 16px;
+            border: 1px solid black;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .temp-value {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TEMPERATURA</h1>
+        <div class="umbrella-grid">
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>1</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>2</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>3</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>4</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>5</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>6</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>7</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>8</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>9</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>10</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>11</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>12</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>13</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>14</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>15</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>16</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>17</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>18</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>19</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>20</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>21</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>22</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>23</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>24</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="umbrella-button" onclick="toggleColor(this)">
+                <div class="temp-control">
+                    <span>25</span>
+                    <span class="temp-value">26°</span>
+                    <div class="temp-buttons">
+                        <button class="temp-button" onclick="changeTemp(this, -1); event.stopPropagation()">-</button>
+                        <button class="temp-button" onclick="changeTemp(this, 1); event.stopPropagation()">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="back-button" onclick="window.location.href='index.html'">TORNA INDIETRO</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.umbrella-button');
+            buttons.forEach(button => {
+                const buttonId = 'temperatura_' + button.querySelector('span').textContent;
+                if (localStorage.getItem(buttonId) === 'active') {
+                    button.classList.add('active');
+                }
+                // Ripristina il valore della temperatura
+                const tempValue = localStorage.getItem(buttonId + '_temp');
+                if (tempValue) {
+                    button.querySelector('.temp-value').textContent = tempValue + '°';
+                }
+            });
+        });
+
+        function toggleColor(button) {
+            button.classList.toggle('active');
+            const buttonId = 'temperatura_' + button.querySelector('span').textContent;
+            
+            if (button.classList.contains('active')) {
+                localStorage.setItem(buttonId, 'active');
+                // Abilita i pulsanti + e - quando il bottone è verde
+                const tempButtons = button.querySelectorAll('.temp-button');
+                tempButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                });
+            } else {
+                // Quando il bottone diventa rosso (non attivo)
+                localStorage.removeItem(buttonId);
+                // Resetta la temperatura a 26°
+                const tempSpan = button.querySelector('.temp-value');
+                tempSpan.textContent = '26°';
+                // Rimuovi anche il valore salvato nel localStorage
+                localStorage.removeItem(buttonId + '_temp');
+                // Disabilita i pulsanti + e - quando il bottone è rosso
+                const tempButtons = button.querySelectorAll('.temp-button');
+                tempButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                });
+            }
+        }
+
+        function changeTemp(button, change) {
+            const parentButton = button.closest('.umbrella-button');
+            // Controlla se il bottone principale è attivo (verde)
+            if (!parentButton.classList.contains('active')) {
+                return; // Non fare nulla se il bottone non è attivo
+            }
+
+            const tempSpan = button.parentElement.parentElement.querySelector('.temp-value');
+            let currentTemp = parseInt(tempSpan.textContent);
+            currentTemp += change;
+            tempSpan.textContent = currentTemp + '°';
+            
+            // Salva il valore della temperatura
+            const buttonNumber = button.parentElement.parentElement.querySelector('span').textContent;
+            localStorage.setItem('temperatura_' + buttonNumber + '_temp', currentTemp);
+        }
+
+        // Al caricamento della pagina, disabilita i pulsanti + e - per i bottoni rossi
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.umbrella-button');
+            buttons.forEach(button => {
+                if (!button.classList.contains('active')) {
+                    const tempButtons = button.querySelectorAll('.temp-button');
+                    tempButtons.forEach(btn => {
+                        btn.disabled = true;
+                        btn.style.opacity = '0.5';
+                        btn.style.cursor = 'not-allowed';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
