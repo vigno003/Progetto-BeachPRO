@@ -8,67 +8,69 @@
             port: 8884,
             clientId: "pip12345",
             userName: "pip12345",
-            password: "password"
+            password: "Pip12345"
         };
 
-        var topic = "pipTopic";
+        var topic = "PipTopic";
 
         // MQTT client instance
-        var client = new Paho.MQTT.Client(broker.hostname, Number(broker.port), broker.clientId, {userName: broker.userName, password: broker.password});
+        const client = new Paho.MQTT.Client(broker.hostname, broker.port, "clientId");
 
-        client.onConnectionLost = function (responseObject) {
-            if (responseObject.errorCode !== 0) {
+        client.onConnectionLost = function (responseObject) 
+        {
+            if (responseObject.errorCode !== 0) 
+            {
                 console.log("Connection lost: " + responseObject.errorMessage);
             }
         };
 
         client.onMessageArrived = function (message) {
-            console.log("Received message: " + message.payloadString);
-            const data = JSON.parse(message.payloadString);
-            if (data.button && data.state) {
-                const buttonId = 'luce_' + data.button;
-                const button = document.querySelector(`.umbrella-button:nth-child(${data.button})`);
-                if (button) {
-                    if (data.state === "acceso") {
-                        button.classList.add('active');
-                        localStorage.setItem(buttonId, 'active');
-                    } else if (data.state === "spento") {
-                        button.classList.remove('active');
-                        localStorage.removeItem(buttonId);
-                    }
+        console.log("Received message: " + message.payloadString);
+        const data = JSON.parse(message.payloadString);
+        if (data.button && data.state) {
+            const buttonId = 'luce_' + data.button;
+            const button = document.querySelector(`.umbrella-button:nth-child(${data.button})`);
+            if (button) {
+                if (data.state === "acceso") {
+                    button.classList.add('active');
+                    localStorage.setItem(buttonId, 'active');
+                } else if (data.state === "spento") {
+                    button.classList.remove('active');
+                    localStorage.removeItem(buttonId);
                 }
             }
-        };
-
-        function onConnect() {
-            console.log("Connected to MQTT broker");
-            client.subscribe(topic);
-            console.log("Subscribed to topic: " + topic);
         }
+    };
 
-        function onFailure(message) {
-            console.log("Connection to MQTT broker failed: " + message.errorMessage);
-        }
+    function onConnect() {
+        console.log("Connected to MQTT broker");
+        client.subscribe(topic);
+        console.log("Subscribed to topic: " + topic);
+    }
 
-        function connect() {
-            client.connect({
-                onSuccess: onConnect,
-                onFailure: onFailure,
-                userName: broker.userName,
-                password: broker.password,
-                useSSL: true
-            });
-        }
+    function onFailure(message) {
+        console.log("Connection to MQTT broker failed: " + message.errorMessage);
+    }
 
-        function sendMessage(buttonId, state) {
-            const message = new Paho.MQTT.Message(JSON.stringify({ button: buttonId, state: state }));
-            message.destinationName = topic;
-            client.send(message);
-        }
+    function connect() {
+        client.connect({
+            onSuccess: onConnect,
+            onFailure: onFailure,
+            userName: broker.userName,
+            password: broker.password,
+            useSSL: true
+        });
+    }
 
-        window.onload = function() {
-            connect();
-        };
+    function sendMessage(buttonId, state) {
+        const message = new Paho.MQTT.Message(JSON.stringify({ button: buttonId, state: state }));
+        message.destinationName = topic;
+        client.send(message);
+    }
+
+    window.onload = function() {
+        connect();
+    };
 
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.umbrella-button');
