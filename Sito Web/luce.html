@@ -11,7 +11,7 @@
             password: "Pip12345"
         };
 
-        var topic = "PipTopic";
+        var topic = "pipTopic";
 
         // MQTT client instance
         const client = new Paho.MQTT.Client(broker.hostname, broker.port, "clientId");
@@ -63,7 +63,14 @@
     }
 
     function sendMessage(buttonId, state) {
-        const message = new Paho.MQTT.Message(JSON.stringify({ button: buttonId, state: state }));
+        if (state === "acceso") {
+            var message = new Paho.MQTT.Message(JSON.stringify("Accendi"));
+        }else if (state === "spento") {
+            var message = new Paho.MQTT.Message(JSON.stringify("Spegni"));
+        }else {
+            console.log("Errore");
+        }
+
         message.destinationName = topic;
         client.send(message);
     }
